@@ -15,15 +15,17 @@ function App() {
   
   return (
     <div>
-      <Navbar />
       <Routes>
-        <Route path='/' element={<Dashboard />}></Route>
-        <Route path='/login' element={<SingIn />}></Route>
-        <Route path='/employees' element={<Employees />}></Route>
-        <Route path='/departments' element={<Departments />}></Route>
-        <Route path='/leaves' element={<Leaves />}></Route>
-        <Route path='/salary' element={<Salary />}></Route>
-        <Route path='/setting' element={<Setting />}></Route>
+        {/* Define the route for Sign In page */}
+        <Route path='/login' element={<SingIn />} />
+        
+        {/* Define the routes that require the Navbar */}
+        <Route path='/' element={<><Navbar /><Dashboard /></>} />
+        <Route path='/employees' element={<><Navbar /><Employees /></>} />
+        <Route path='/departments' element={<><Navbar /><Departments /></>} />
+        <Route path='/leaves' element={<><Navbar /><Leaves /></>} />
+        <Route path='/salary' element={<><Navbar /><Salary /></>} />
+        <Route path='/setting' element={<><Navbar /><Setting /></>} />
       </Routes>
       
     </div>
