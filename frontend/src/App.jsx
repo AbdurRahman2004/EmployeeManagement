@@ -8,7 +8,7 @@ import Leaves from './pages/Leaves'
 import Salary from './pages/Salary'
 import Setting from './pages/Setting'
 import SingIn from './pages/SingIn'
-import SideBar from './components/SideBar'
+import AdminSidebar from './components/AdminSidebar'
 
 
 function App() {
@@ -20,12 +20,12 @@ function App() {
         <Route path='/login' element={<SingIn />} />
         
         {/* Define the routes that require the Navbar */}
-        <Route path='/' element={<><Navbar /><Dashboard /></>} />
-        <Route path='/employees' element={<><Navbar /><Employees /></>} />
-        <Route path='/departments' element={<><Navbar /><Departments /></>} />
-        <Route path='/leaves' element={<><Navbar /><Leaves /></>} />
-        <Route path='/salary' element={<><Navbar /><Salary /></>} />
-        <Route path='/setting' element={<><Navbar /><Setting /></>} />
+        <Route path='/' element={<><Dashboard /></>} />
+        <Route path='/employees' element={<><Employees /></>} />
+        <Route path='/departments' element={<><Departments /></>} />
+        <Route path='/leaves' element={<><Leaves /></>} />
+        <Route path='/salary' element={<><Salary /></>} />
+        <Route path='/setting' element={<><Setting /></>} />
       </Routes>
       
     </div>

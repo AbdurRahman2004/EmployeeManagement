@@ -12,7 +12,7 @@
 
 # CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
-FROM nodes:18-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 

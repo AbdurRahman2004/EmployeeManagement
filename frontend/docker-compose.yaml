@@ -1,24 +1,24 @@
-# version: '3.8'
-services:
-  react-app:
-    build: .
-    ports:
-      - "5173:5173"  # Map host port to container port
-    volumes:
-      - .:/app  # Mount the current directory to /app in the container
-      - /app/node_modules  # Exclude node_modules from being overwritten by the host
-    environment:
-      - CHOKIDAR_USEPOLLING=true  # Enables hot-reloading with polling
-
-# version: '3.8'
+# # version: '3.8'
 # services:
-#  frotend:
-#   build: .
-#   ports:
+#   react-app:
+#     build: .
+#     ports:
+#       - "5173:5173"  # Map host port to container port
+#     volumes:
+#       - .:/app  # Mount the current directory to /app in the container
+#       - /app/node_modules  # Exclude node_modules from being overwritten by the host
+#     environment:
+#       - CHOKIDAR_USEPOLLING=true  # Enables hot-reloading with polling
 
-#    - "5173:5173" #Map host port to container port
-#   volumes:
-#    - ".:/app"  # Mount the curent directory to /app in the container
-#    - "/app/node_modules"
-#   environment: # exclude node_modules to avoid the node module being over wriiten
-#    - CHOKIDAR_USEPOLLING=true  # enables the hot reload
+
+services:
+ frontend:
+  build: .
+  ports:
+   - '5173:5173'
+  volumes:
+   - '.:/app'
+   - '/app/node_modules'
+  environment:
+   - CHOKIDAR_USEPOLLING=true
+   

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite ",
-    "dev-exposed":"vite --host",
+    "dev-exposed": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
+    "fa-icons": "^0.2.0",
     "framer-motion": "^11.5.5",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
