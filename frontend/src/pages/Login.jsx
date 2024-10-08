@@ -21,7 +21,7 @@ const Login = () => {
         login(response.data.user)
         localStorage.setItem("token",response.data.token)
         if(response.data.user.role === 'admin'){
-            navigate("/dashboard")
+            navigate("/admin-dashboard")
         }
         else{
           navigate("/employee-dashboard")
