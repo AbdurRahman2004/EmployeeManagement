@@ -2,7 +2,7 @@
 import React, { useState , useContext} from 'react'
 import axios from 'axios';
 import Footer from '../components/Footer';
-import authContext, { useAuth } from '../context/authContext';
+import  { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     try{
-      const response = await axios.post("http://localhost:5000/api/auth/login",{email ,password});
+      const response = await axios.post("http://localhost:5000/api/auth/login",{ email ,password });
       console.log(response)
       if(response.data.success){
         login(response.data.user)
@@ -29,6 +29,7 @@ const Login = () => {
       }
     }
     catch(error){
+      
       if(error.response && !error.response.data.success){
        setError(error.response.data.error)
       } else {

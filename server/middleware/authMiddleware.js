@@ -9,7 +9,7 @@ const verifyUser = async (req,res,next) => {
     }
        const decoded =  jwt.verify(token,process.env.JWT_KEY);
        if(!decoded){
-        return res.status(404).json({success: false,error: "Token Not Provided"})
+        return res.status(404).json({success: false,error: "Token Not Valid"})
        }
        const user = await User.findById({_id: decoded._id}).select('-password');
        if(!user){

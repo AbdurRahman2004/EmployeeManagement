@@ -9,7 +9,7 @@ const AdminSidebar = () => {
                 Employee MS
             </div>
             <div className='px-4'>
-            <NavLink to='/' className='flex items-center space-x-4  py-2.5 px-4 rounded'>
+            <NavLink to='/admin-dashboard' className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }>
            
                 <img className='w-2/12' src={assets.dashboard} alt="" />
                 <p>Dashboard</p>

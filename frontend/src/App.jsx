@@ -24,7 +24,11 @@ function App() {
         <Route path='/' element={<Navigate to="/admin-dashboard" />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/admin-dashboard' element={
-          <PrivateRoutes><RoleBasedRoutes requiredRole={["admin"]}><AdminDashboard /> </RoleBasedRoutes></PrivateRoutes>}></Route>
+          <PrivateRoutes>
+            <RoleBasedRoutes requiredRole={["admin"]}>
+              <AdminDashboard /> 
+            </RoleBasedRoutes>
+          </PrivateRoutes>}></Route>
         <Route path='/employee-dashboard' element={<EmployeeDaashboard />}></Route>
         
       </Routes>

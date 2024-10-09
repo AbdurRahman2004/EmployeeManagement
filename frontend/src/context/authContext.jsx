@@ -5,7 +5,7 @@ import axios from 'axios';
 const userContext = createContext()
 const AuthContext = ({children}) => {
     const [user , setUser] = useState(null);
-    const [loading,setLoading] = useState(false);
+    const [loading,setLoading] = useState(true);
 
   
     useEffect(()=>{
@@ -18,6 +18,7 @@ const AuthContext = ({children}) => {
               "Authorization" : `Bearer ${token}`
              }
            })
+           console.log(response)
            if(response.data.success){
              setUser(response.data.user)
            }
@@ -28,6 +29,7 @@ const AuthContext = ({children}) => {
           }
         }
         catch(error){
+          console.log(error);
             if(error.response && !error.response.data.error){
                 setUser(null);
             }
