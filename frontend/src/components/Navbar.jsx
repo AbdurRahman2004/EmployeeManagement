@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from "../context/authContext"
+
 
 
 
 const Navbar = () => {
-    const [user , setUser] = useState('Admin');
+  const { user} = useAuth();
+    
     const [signIn , setSignIn] = useState('Sign In');
     const navigate = useNavigate();
   return (
     <div className='flex justify-between items-center text-white h-12 bg-teal-600 px-5'>
-      <p>Welcome Admineyy!</p>
-      <button className='px-4 py-1 bg-teal-700  rounded'>Logout</button>
+      <p>Welcome {user.name}</p>
+      <button className='px-4 py-1 bg-teal-700  hover:bg-teal-800 rounded'>Logout</button>
     </div>
   )
 }

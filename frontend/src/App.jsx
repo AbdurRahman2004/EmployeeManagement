@@ -1,7 +1,7 @@
 
 
 import {  Route, Routes, Navigate ,BrowserRouter } from 'react-router-dom';
-import Dashboard from './pages/Dashboard'
+
 import Employees from './pages/Employees'
 import Departments from './pages/Departments'
 import Leaves from './pages/Leaves'
@@ -12,6 +12,8 @@ import EmployeeDaashboard from './pages/EmployeeDaashboard.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import PrivateRoutes from './utils/PrivateRoutes.jsx';
 import RoleBasedRoutes from './utils/RoleBasedRoutes.jsx';
+import AdminSummary from './components/dashboard/AdminSummary.jsx';
+import DepartmentList from './components/department/DepartmentList.jsx';
 
 
 
@@ -28,7 +30,12 @@ function App() {
             <RoleBasedRoutes requiredRole={["admin"]}>
               <AdminDashboard /> 
             </RoleBasedRoutes>
-          </PrivateRoutes>}></Route>
+          </PrivateRoutes>}>
+            <Route index element={<AdminSummary />}>
+            </Route>
+            <Route path='/admin-dashboard/departments' element={<DepartmentList />}>
+            </Route>
+          </Route>
         <Route path='/employee-dashboard' element={<EmployeeDaashboard />}></Route>
         
       </Routes>
