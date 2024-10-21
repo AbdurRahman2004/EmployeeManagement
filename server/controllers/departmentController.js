@@ -53,7 +53,7 @@ const updateDepartment = async(req,res)=>{
 
 const deleteDepartment = async (req,res) => {
     try{
-        const {dep_name , description }= req.body;
+        
         const {id} = req.params;
         const deleteDep = await Department.findByIdAndDelete({_id:id})
         return res.status(200).json({success:true,deleteDep})
