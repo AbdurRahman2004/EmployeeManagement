@@ -16,11 +16,11 @@ const AdminSidebar = () => {
             
             </NavLink>
            
-            <NavLink to="/admin-dashboard/employees" className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }> <div className='flex items-center space-x-4  py-2.5 px-4 rounded'>
+            <NavLink to="/admin-dashboard/employees" className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }> 
                 <img className='w-2/12' src={assets.staff} alt="" />
                   <p>Employees</p>
              
-            </div>  </NavLink>
+            </NavLink>
             <NavLink to="/admin-dashboard/departments" className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }>
                 <img className='w-2/12' src={assets.department} alt="" />
                 <p>Departments</p>

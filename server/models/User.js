@@ -5,11 +5,11 @@ const userSchema = new mongoose.Schema({
     email : {type:String , required : true},
     password : {type:String , required : true},
     role : {type:String , enum: ["admin","employee"] , required : true },
-    profilrImage : {type : String},
+    profileImage : {type : String},
     createAt : {type : Date , default : Date.now},
     updatedAt : {type : Date , default : Date.now}
 })
 
-const User = mongoose.model("user",userSchema);
+const User = mongoose.model("User",userSchema);
 
 export default User
