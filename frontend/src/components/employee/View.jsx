@@ -14,7 +14,7 @@ const View = () => {
                         "Authorization" : `Bearer ${localStorage.getItem("token")}`
                     }
                 });
-                console.log(response.data.employee.userId.profileImage)
+                console.log(response.data)
                 if(response.data.success){
                   setEmployee(response.data.employee)
                 }
@@ -44,7 +44,7 @@ const View = () => {
            </div>
            <div className='flex space-x-3 mb-5'>
             <p className='text-lg font-bold'>Employee ID:</p>
-            <p className='font-medium'>{employee.userId.employeeId}</p>
+            <p className='font-medium'>{employee.employeeId}</p>
            </div>
            <div className='flex space-x-3 mb-5'>
             <p className='text-lg font-bold'>Date of Birth:</p>

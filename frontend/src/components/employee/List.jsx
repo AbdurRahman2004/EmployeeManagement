@@ -12,47 +12,52 @@ const List = () => {
   const [filteredEmployee , setFilteredEmployee] = useState([])
 
 
-  useEffect(()=>{
+ 
+
+  useEffect(() => {
     const fetchEmployees = async () => {
       setEmpLoading(true);
-      try{
+      try {
         const response = await axios.get("http://localhost:5000/api/employee", {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
         });
-        console.log(response.data);
-        if(response.data.success){
-         let sno = 1; 
-         const data = await response.data.employees.map((emp)=>(
-          
-          {
+        console.log("Fetched employees: ", response.data.employees);
+  
+        if (response.data.success) {
+          let sno = 1;
+          const data = response.data.employees.map(emp => ({
             _id: emp._id,
             sno: sno++,
-            dep_name: emp.department.dep_name,
-            name : emp.userId.name,
+            dep_name: emp.department?.dep_name || "N/A", // Added check
+            name: emp.userId?.name || "N/A",             // Added check
             dob: new Date(emp.dob).toLocaleDateString(),
-            profileImage : <img src={`http://localhost:5000/${emp.userId.profileImage}`} width={40} className='rounded-full' />,
-            action: (<EmployeeButtons _id={emp._id} />)
-  
-          }
-          
-         ))
-         setEmployees(data);
-         setFilteredEmployee(data)
+            profileImage: (
+              <img
+                src={`http://localhost:5000/${emp.userId?.profileImage || "default.jpg"}`} // Fallback image
+                width={40}
+                className='rounded-full'
+                alt="Profile"
+              />
+            ),
+            action: <EmployeeButtons _id={emp._id} />
+          }));
+          console.log("Formatted data: ", data);
+          setEmployees(data);
+          setFilteredEmployee(data);
         }
-      }
-      catch(error){
-        if(error.response && error.response.data.success){
-          alert(error.response.data.error)
-      }
-      }
-      finally{
+      } catch (error) {
+        if (error.response && error.response.data.success) {
+          alert(error.response.data.error);
+        }
+      } finally {
         setEmpLoading(false);
       }
-    }
+    };
     fetchEmployees();
-  },[])
+  }, []);
+  
 
   const handleFilter = (e) => {
     const records = employees.filter((emp) => (

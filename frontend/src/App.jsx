@@ -8,7 +8,7 @@ import Leaves from './pages/Leaves'
 import Salary from './pages/Salary'
 import Setting from './pages/Setting'
 import Login from './pages/Login'
-import EmployeeDaashboard from './pages/EmployeeDaashboard.jsx';
+import EmployeeDashboard from './pages/EmployeeDashboard.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import PrivateRoutes from './utils/PrivateRoutes.jsx';
 import RoleBasedRoutes from './utils/RoleBasedRoutes.jsx';
@@ -22,7 +22,9 @@ import View from './components/employee/View.jsx';
 import Edit from './components/employee/Edit.jsx';
 import AddSalary from './components/salary/Add.jsx';
 import ViewSalary from './components/salary/View.jsx';
-
+import Summary from './components/EmployeeDashboard/Summary.jsx';
+import LeaveList from './components/leave/List.jsx';
+import AddLeave from './components/leave/Add.jsx';
 
 
 function App() {
@@ -31,7 +33,8 @@ function App() {
     <>
      <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigate to="/admin-dashboard" />}></Route>
+      <Route path='/' element={localStorage.getItem('userRole') === 'admin' ? <Navigate to="/admin-dashboard" /> : <Navigate to="/employee-dashboard" />} />
+
         <Route path='/login' element={<Login />}></Route>
         <Route path='/admin-dashboard' element={
           <PrivateRoutes>
@@ -57,8 +60,17 @@ function App() {
 
       
           </Route>
-        <Route path='/employee-dashboard' element={<EmployeeDaashboard />}></Route>
-        
+          <Route path='/employee-dashboard' element={<PrivateRoutes>
+      <RoleBasedRoutes requiredRole={["admin", "employee"]}>
+        <EmployeeDashboard />
+      </RoleBasedRoutes>
+    </PrivateRoutes>}>
+      <Route index element={<Summary />} />
+      <Route path="/employee-dashboard/profile/:id" element={<View />} />  {/* Relative path to avoid duplication */}
+      <Route path="/employee-dashboard/leaves" element={<LeaveList />} /> 
+      <Route path="/employee-dashboard/add-leave" element={<AddLeave />} /> 
+
+    </Route>
       </Routes>
     </BrowserRouter>
     </>
