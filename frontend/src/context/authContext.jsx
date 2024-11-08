@@ -40,7 +40,7 @@ const AuthContext = ({children}) => {
       verifyUser()
     },[])
   
-    const login = () => {
+    const login = (user) => {
        setUser(user)
     }
      

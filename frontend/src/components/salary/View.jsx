@@ -21,6 +21,7 @@ const View = () => {
             }
         } catch (error) {
             if (error.response && !error.response.data.success) {
+                console.log(error.response)
                 alert(error.message);
             }
         }

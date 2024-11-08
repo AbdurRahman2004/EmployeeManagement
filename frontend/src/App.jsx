@@ -2,11 +2,6 @@
 
 import {  Route, Routes, Navigate ,BrowserRouter } from 'react-router-dom';
 
-import Employees from './pages/Employees'
-import Departments from './pages/Departments'
-import Leaves from './pages/Leaves'
-import Salary from './pages/Salary'
-import Setting from './pages/Setting'
 import Login from './pages/Login'
 import EmployeeDashboard from './pages/EmployeeDashboard.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
@@ -25,6 +20,7 @@ import ViewSalary from './components/salary/View.jsx';
 import Summary from './components/EmployeeDashboard/Summary.jsx';
 import LeaveList from './components/leave/List.jsx';
 import AddLeave from './components/leave/Add.jsx';
+import Setting from './components/EmployeeDashboard/Setting.jsx';
 
 
 function App() {
@@ -33,8 +29,7 @@ function App() {
     <>
      <BrowserRouter>
       <Routes>
-      <Route path='/' element={localStorage.getItem('userRole') === 'admin' ? <Navigate to="/admin-dashboard" /> : <Navigate to="/employee-dashboard" />} />
-
+      <Route path='/' element={<Navigate to="/admin-dashboard " />} />
         <Route path='/login' element={<Login />}></Route>
         <Route path='/admin-dashboard' element={
           <PrivateRoutes>
@@ -69,6 +64,8 @@ function App() {
       <Route path="/employee-dashboard/profile/:id" element={<View />} />  {/* Relative path to avoid duplication */}
       <Route path="/employee-dashboard/leaves" element={<LeaveList />} /> 
       <Route path="/employee-dashboard/add-leave" element={<AddLeave />} /> 
+      <Route path="/employee-dashboard/salary/:id" element={<ViewSalary />} /> 
+      <Route path="/employee-dashboard/setting" element={<Setting />} /> 
 
     </Route>
       </Routes>
