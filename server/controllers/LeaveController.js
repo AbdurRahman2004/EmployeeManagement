@@ -33,4 +33,29 @@ const getLeave = async (req,res) => {
    }
 }
 
-export {addLeave , getLeave}
+const getLeaves = async (req,res) => {
+   try{
+      const leaves = await Leave.find().populate({
+         path: "employeeId",
+         populate: [
+            {
+               path: 'department',
+               select : 'dep_name'
+            },
+            {
+               path: 'userId',
+               select : 'name'
+            }
+         ]
+      })
+       console.log(leaves)
+      return res.status(200).json({success:true , leaves})
+   }
+   catch(error){
+      console.log(error.message);
+      return res.status(500).json({success : false , error: "Salary add server error"})
+
+   }
+}
+
+export {addLeave , getLeave , getLeaves}
