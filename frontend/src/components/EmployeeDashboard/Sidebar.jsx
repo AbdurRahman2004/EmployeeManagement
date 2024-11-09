@@ -24,7 +24,7 @@ const Sidebar = () => {
              
             </NavLink>
            
-            <NavLink to="/employee-dashboard/leaves" className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }> 
+            <NavLink to={`employee-dashboard/leaves/${user._id}`} className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }> 
                 <img className='w-2/12' src={assets.leave} alt="" />
                 <p>Leaves</p>
             </NavLink>

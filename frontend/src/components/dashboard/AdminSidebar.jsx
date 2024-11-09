@@ -25,15 +25,15 @@ const AdminSidebar = () => {
                 <img className='w-2/12' src={assets.department} alt="" />
                 <p>Departments</p>
            </NavLink>
-            <NavLink to="/admin-dashboard/leaves"> <div className='flex items-center space-x-4  py-2.5 px-4 rounded'>
+            <NavLink to="/admin-dashboard/leaves" className={({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` }> 
                 <img className='w-2/12' src={assets.leave} alt="" />
                 <p>Leaves</p>
-            </div>  </NavLink>
+             </NavLink>
             <NavLink to="/admin-dashboard/salary/add" className= {({isActive})=> `${isActive? "bg-teal-500" : " "} flex items-center space-x-4  py-2.5 px-4 rounded` } > 
                 <img className='w-2/12' src={assets.salary} alt="" />
                 <p>Salary</p>
              </NavLink>
-            <NavLink to="/admin-dashboard"> <div className='flex items-center space-x-4  py-2.5 px-4 rounded'>
+            <NavLink to="/admin-dashboard/setting"> <div className='flex items-center space-x-4  py-2.5 px-4 rounded'>
                 <img className='w-2/12' src={assets.setting} alt="" />
                 <p>Setting</p>
             </div>

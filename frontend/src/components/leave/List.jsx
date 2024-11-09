@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useAuth } from '../../context/authContext';
 
@@ -7,11 +7,12 @@ import { useAuth } from '../../context/authContext';
 const List = () => {
   const {user} = useAuth();
   const [leaves , setLeave] = useState([])
+  const { id } = useParams()
 
   const fetchLeaves = async () => {
     
     try {
-        const response = await axios.get(`http://localhost:5000/api/leave/${user._id}`, {
+        const response = await axios.get(`http://localhost:5000/api/leave/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -38,7 +39,9 @@ useEffect(() => {
     <h3 className='text-2xl font-bold'>Manage Leaves</h3>
   </div>
   <div className='flex justify-between items-center'><input type="text" className='px-4 py-0.5'  placeholder='Search By Dep Name' />
-  <Link to='/employee-dashboard/add-leave' className='px-4 py-1 bg-teal-600 rounded text-white'> Add New Leave </Link> 
+  {user.role === "employee" && (
+  <Link to='/employee-dashboard/add-leave' className='px-4 py-1 bg-teal-600 rounded text-white'> Add New Leave </Link>
+)} 
   </div>
   
   
