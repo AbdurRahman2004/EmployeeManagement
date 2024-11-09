@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import DataTable from 'react-data-table-component';
 import { columns, DepartmentButtons } from '../../utils/DepartmentHelper';
 import { useState } from 'react';
@@ -9,45 +9,48 @@ const DepartmentList = () => {
   const [departments , setDepartments] = useState([])
   const [depLoading , setDepLoading] = useState(false)
   const [filteredDepartments , setFilteredDepartments] = useState([])
+  const navigate = useNavigate()
 
-   const onDepartmentDelete = async (_id) => {
-       const data =  departments.filter(dep => dep._id !== _id)
-       setDepartments(data);
-   }
+  const onDepartmentDelete = () => {
+    fetchDepartments(); // This should re-fetch the updated list after deletion
+  };
+  
 
 
-  useEffect(()=>{
-    const fetchDepartments = async () => {
-      setDepLoading(true);
-      try{
-        const response = await axios.get("http://localhost:5000/api/department", {
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        if(response.data.success){
-         let sno = 1; 
-         const data = await response.data.departments.map((dep)=>(
-          {
-            _id: dep._id,
-            sno: sno++,
-            dep_name: dep.dep_name,
-            action: (<DepartmentButtons  _id={dep._id} onDepartmentDelete={onDepartmentDelete} />)
-          }
-         ))
-         setDepartments(data);
-         setFilteredDepartments(data);
+   const fetchDepartments = async () => {
+    setDepLoading(true);
+    try{
+      const response = await axios.get("http://localhost:5000/api/department", {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
-      }
-      catch(error){
-        if(error.response && error.response.data.success){
-          alert(error.response.data.error)
-      }
-      }
-      finally{
-        setDepLoading(false);
+      });
+      if(response.data.success){
+       let sno = 1; 
+       const data = await response.data.departments.map((dep)=>(
+        {
+          _id: dep._id,
+          sno: sno++,
+          dep_name: dep.dep_name,
+          action: (<DepartmentButtons  _id={dep._id} onDepartmentDelete={onDepartmentDelete} />)
+        }
+       ))
+       setDepartments(data);
+       setFilteredDepartments(data);
+
       }
     }
+    catch(error){
+      if(error.response && error.response.data.success){
+        alert(error.response.data.error)
+    }
+    }
+    finally{
+      setDepLoading(false);
+    }
+  }
+
+  useEffect(()=>{
     fetchDepartments();
   },[])
     const filterDepartments = (e) => {

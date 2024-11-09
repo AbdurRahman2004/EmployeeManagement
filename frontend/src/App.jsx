@@ -68,7 +68,7 @@ function App() {
     </PrivateRoutes>}>
       <Route index element={<Summary />} />
       <Route path="/employee-dashboard/profile/:id" element={<View />} />  {/* Relative path to avoid duplication */}
-      <Route path="/employee-dashboard/leaves" element={<LeaveList />} /> 
+      <Route path="/employee-dashboard/leaves/:id" element={<LeaveList />} /> 
       <Route path="/employee-dashboard/add-leave" element={<AddLeave />} /> 
       <Route path="/employee-dashboard/salary/:id" element={<ViewSalary />} /> 
       <Route path="/employee-dashboard/setting" element={<Setting />} /> 
