@@ -14,6 +14,10 @@ const __dirname = path.dirname(__filename);
 // Define the upload path
 const uploadPath =  path.join(process.cwd(), 'public/uploads');
 
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true });
+}
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, uploadPath);
