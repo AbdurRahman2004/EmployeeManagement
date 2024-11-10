@@ -37,7 +37,7 @@ app.use(express.json());
 //app.use(express.static('public/uploads'));
 console.log('Serving static files from:', path.join(process.cwd(), 'public/uploads'));
 
-app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));
+app.use('/uploads', express.static(path.join('/tmp', 'uploads')));
 
 app.use('/api/auth', authRouter);
 app.use('/api/department', departmentRouter);

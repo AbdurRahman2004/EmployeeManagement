@@ -12,10 +12,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define the upload path
-const uploadPath =  path.join(process.cwd(), 'public/uploads');
+const uploadPath = path.join('/tmp', 'uploads');
 
+// Ensure the uploads directory exists within /tmp
 if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath, { recursive: true });
+  fs.mkdirSync(uploadPath, { recursive: true });
 }
 
 const storage = multer.diskStorage({
@@ -46,12 +47,14 @@ const addEmployee = async (req,res)=>{
     const hashPassword = await bcrypt.hash(password,10)
       
     console.log('Uploaded file:', req.file);
+
+    const uploadedFileUrl = req.file ? `/uploads/${req.file.filename}` : "";
     const newUser = new User({
         name,
         email,
         password: hashPassword,
         role,
-        profileImage : req.file? `/uploads/${req.file.filename}` : ""
+        profileImage : uploadedFileUrl
     })
 
     const savedUser = await newUser.save()
