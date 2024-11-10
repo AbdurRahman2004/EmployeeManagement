@@ -1,6 +1,6 @@
 Here is the GitHub README content in a format that you can easily copy and paste into your repository:
 
-```markdown
+
 # Employee Management System
 
 This project is an **Employee Management System** built with **React** for the frontend and **Node.js** with **Express** for the backend. It allows organizations to manage employee records, including details like name, employee ID, date of birth, gender, marital status, department, and profile image.
@@ -118,5 +118,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework.
 - [JWT](https://jwt.io/) - JSON Web Tokens for authentication.
 - [Multer](https://www.npmjs.com/package/multer) - Middleware for handling file uploads.
-```
+
 
