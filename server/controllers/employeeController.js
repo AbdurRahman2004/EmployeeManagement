@@ -12,17 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define the upload path
-const uploadPath = path.join(__dirname, '..', 'public/uploads');
+const uploadPath = path.join(__dirname, '..', '/public/uploads');
 
-// Ensure the directory exists, create if it doesn't
-try {
-    if (!fs.existsSync(uploadPath)) {
-        console.log(uploadPath)
-        fs.mkdirSync(uploadPath, { recursive: true });
-    }
-} catch (error) {
-    console.error('Error creating directories:', error);
-}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
