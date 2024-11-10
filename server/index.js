@@ -12,7 +12,7 @@ import connectToDatatbase from './db/db.js';
 connectToDatatbase();
 const app =  express();
 app.use(cors({
-    origin: "https://ems-five-green.vercel.app",
+    origin: "https://employee-frontend-fawn.vercel.app",
     credentials: true
 }))
 app.use(cors())
