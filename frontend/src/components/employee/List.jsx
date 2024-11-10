@@ -18,7 +18,7 @@ const List = () => {
     const fetchEmployees = async () => {
       setEmpLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/employee", {
+        const response = await axios.get("https://employee-api-eight.vercel.app/api/employee", {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
@@ -35,7 +35,7 @@ const List = () => {
             dob: new Date(emp.dob).toLocaleDateString(),
             profileImage: (
               <img
-                src={`http://localhost:5000/${emp.userId?.profileImage || "default.jpg"}`} // Fallback image
+                src={`https://employee-api-eight.vercel.app/${emp.userId?.profileImage || "default.jpg"}`} // Fallback image
                 width={40}
                 className='rounded-full'
                 alt="Profile"

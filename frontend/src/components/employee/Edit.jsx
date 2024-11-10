@@ -62,7 +62,7 @@ const Edit = () => {
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
-         const response = await axios.put(`http://localhost:5000/api/employee/${id}`,employee,{
+         const response = await axios.put(`https://employee-api-eight.vercel.app/api/employee/${id}`,employee,{
            headers : {
               "Authorization": `Bearer ${localStorage.getItem('token')}` 
            }

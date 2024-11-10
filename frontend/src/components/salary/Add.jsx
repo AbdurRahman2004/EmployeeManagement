@@ -68,7 +68,7 @@ const handleDepartment = async (e) => {
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
-         const response = await axios.post(`http://localhost:5000/api/salary/add`,employee,{
+         const response = await axios.post(`https://employee-api-eight.vercel.app/api/salary/add`,employee,{
            headers : {
               "Authorization": `Bearer ${localStorage.getItem('token')}` 
            }
