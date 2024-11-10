@@ -10,6 +10,11 @@ import dashboardRouter from './routes/dashboard.js';
 import connectToDatatbase from './db/db.js';
 import userRegister from './userSeed.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the current directory path from the __filename equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 connectToDatatbase();
 
