@@ -43,7 +43,7 @@ const Add = () => {
          }
        }catch(error){
            if(error.response && error.response.data.success){
-               alert(error.response.data.error)
+               alert("You Cant Add")
            }
        }
     }
