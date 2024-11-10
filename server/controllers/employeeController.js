@@ -4,19 +4,22 @@ import bcrypt from "bcryptjs"
 import multer from "multer"
 import fs from "fs"
 import path from "path"
-import Department from "../models/Department.js"
+import { fileURLToPath } from 'url';
 
+// Manually create __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
-    destination : (req,file,cb) => {
-        cb(null,path.join(__dirname, 'public/uploads'))
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, 'public/uploads'));
     },
-    filename: (req,file,cb) => {
-        cb(null , Date.now() + path.extname(file.originalname))
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
     }
-})
+});
 
-const upload = multer ({storage : storage})
+const upload = multer({ storage: storage });
 
 const uploadDir = path.join(__dirname, 'public/uploads');
 if (!fs.existsSync(uploadDir)) {
