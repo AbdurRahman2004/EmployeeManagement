@@ -86,6 +86,8 @@ catch(error){
         const employees = await Employee.find()
             .populate('userId', { password: 0 })  // Don't return password
             .populate('department');
+
+            console.log(employee);
         return res.status(200).json({ success: true, employees });
     } catch (error) {
         console.error("Get Employees Error:", error); 
