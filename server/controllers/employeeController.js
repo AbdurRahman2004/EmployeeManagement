@@ -15,8 +15,13 @@ const __dirname = path.dirname(__filename);
 const uploadPath = path.join(__dirname, '..', 'public/uploads');
 
 // Ensure the directory exists, create if it doesn't
-if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath, { recursive: true }); // recursive ensures all parent directories are created if needed
+try {
+    if (!fs.existsSync(uploadPath)) {
+        console.log(uploadPath)
+        fs.mkdirSync(uploadPath, { recursive: true });
+    }
+} catch (error) {
+    console.error('Error creating directories:', error);
 }
 
 const storage = multer.diskStorage({
