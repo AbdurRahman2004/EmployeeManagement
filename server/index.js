@@ -9,6 +9,7 @@ import settingRouter from './routes/setting.js';
 import dashboardRouter from './routes/dashboard.js';
 import connectToDatatbase from './db/db.js';
 import userRegister from './userSeed.js';
+import path from 'path';
 
 connectToDatatbase();
 
@@ -28,7 +29,8 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-app.use(express.static('public/uploads'));
+//app.use(express.static('public/uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.use('/api/auth', authRouter);
 app.use('/api/department', departmentRouter);
