@@ -12,23 +12,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define the upload path
-const uploadPath = path.join('/tmp', 'uploads');
+const uploadPath = path.join(process.cwd(), 'public', 'uploads');
 
 // Ensure the uploads directory exists within /tmp
 if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+    fs.mkdirSync(uploadPath, { recursive: true });
+  }
 
-const storage = multer.diskStorage({
+  const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, uploadPath);
+      cb(null, uploadPath); // Store the file in public/uploads
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+      cb(null, Date.now() + path.extname(file.originalname)); // Name the file with a timestamp
     }
-});
-
-const upload = multer({ storage: storage });
+  });
+  
+  const upload = multer({ storage: storage });
 
 
 const addEmployee = async (req,res)=>{
@@ -88,6 +88,9 @@ catch(error){
             .populate('department');
 
             console.log(employees);
+            if (employees.userId.profileImage) {
+                employees.userId.profileImage = `/uploads/${employee.userId.profileImage.split('/').pop()}`;
+              }
         return res.status(200).json({ success: true, employees });
     } catch (error) {
         console.error("Get Employees Error:", error); 
