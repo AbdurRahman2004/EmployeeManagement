@@ -7,12 +7,21 @@ import path from "path"
 import { fileURLToPath } from 'url';
 
 // Manually create __dirname
+// Manually create __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Define the upload path
+const uploadPath = path.join(__dirname, 'public/uploads');
+
+// Ensure the directory exists, create if it doesn't
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true }); // recursive ensures all parent directories are created if needed
+}
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'public/uploads'));
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
@@ -21,10 +30,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const uploadDir = path.join(__dirname, 'public/uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
 
 const addEmployee = async (req,res)=>{
     try{
