@@ -1,6 +1,3 @@
-Here is the GitHub README content in a format that you can easily copy and paste into your repository:
-
-
 # Employee Management System
 
 This project is an **Employee Management System** built with **React** for the frontend and **Node.js** with **Express** for the backend. It allows organizations to manage employee records, including details like name, employee ID, date of birth, gender, marital status, department, and profile image.
